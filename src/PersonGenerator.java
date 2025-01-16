@@ -15,7 +15,7 @@ public class PersonGenerator {
         String title;
         int birthYear;
 
-        ArrayList<String> people = new ArrayList <String> ();
+        ArrayList<String> people = new ArrayList <> ();
 
             do {
                 id = SafeInput.getNonZeroLenString(in, "Please enter the Person's ID");
