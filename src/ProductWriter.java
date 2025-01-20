@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
-public class PersonGenerator {
+public class ProductWriter {
 
     public static void main(String[] args)
     {
@@ -16,29 +16,30 @@ public class PersonGenerator {
 
         Scanner in = new Scanner(System.in);
         String id;
-        String fName;
-        String lName;
-        String title;
-        int birthYear;
+        String name;
+        String desc;
+        double cost;
         String rec;
 
-        ArrayList<String> people = new ArrayList <> ();
+        ArrayList<String> products = new ArrayList <> ();
 
             do {
-                id = SafeInput.getNonZeroLenString(in, "Please enter the Person's ID");
-                fName = SafeInput.getNonZeroLenString(in, "Please enter the Person's first name");
-                lName = SafeInput.getNonZeroLenString(in, "Please enter the Person's last name");
-                title = SafeInput.getNonZeroLenString(in, "Please enter the Person's title");
-                birthYear = SafeInput.getRangedInt(in, "Please enter the Person's birth year", 1000, 9999);
+                id = SafeInput.getNonZeroLenString(in, "Please enter the product's ID");
+                System.out.println("Entered: " + id);
+                name = SafeInput.getNonZeroLenString(in, "Please enter the product's name");
+                System.out.println("Entered: " + name);
+                desc = SafeInput.getNonZeroLenString(in, "Please enter the product's description");
+                System.out.println("Entered: " + desc);
+                cost = SafeInput.getRangedInt(in, "Please enter the Person's birth year", 1000, 9999);
+                System.out.println("Entered: " + cost);
 
-
-                rec = id+", "+fName+", "+lName+", "+title+", "+birthYear;
-                people.add(rec);
+                rec = id+", "+name+", "+desc+", "+cost;
+                products.add(rec);
                 done = SafeInput.getYNConfirm(in, "Close Program?");
 
         }while(!done);
         File workingDirectory = new File(System.getProperty("user.dir"));
-        Path file = Paths.get(workingDirectory.getPath() + "\\src\\PersonTestData.txt");
+        Path file = Paths.get(workingDirectory.getPath() + "\\src\\ProductTestData.txt");
 
         try
         {
@@ -51,9 +52,9 @@ public class PersonGenerator {
 
             // Finally can write the file LOL!
 
-            for(String person : people)
+            for(String product : products)
             {
-                writer.write(person, 0, person.length());  // stupid syntax for write rec
+                writer.write(product, 0, product.length());  // stupid syntax for write rec
                 // 0 is where to start (1st char) the write
                 // person. length() is how many chars to write (all)
                 writer.newLine();  // adds the new line
